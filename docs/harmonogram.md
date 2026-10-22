@@ -1,5 +1,3 @@
-Oto uproszczona, bardziej realistyczna wersja harmonogramu oraz podziału zadań, dopasowana do studenckiego projektu w technologii Python + Streamlit + SQLite.
-
 ---
 
 # 📅 CalorieTracker – Harmonogram i Kamienie Milowe
