@@ -24,6 +24,8 @@ Szczegółowy opis projektu oraz wymagania funkcjonalne i niefunkcjonalne:
 
 [User Stories](docs/ORG-02-User-Stories.md)
 
+[Harmonogram](docs/harmonogram.md).
+
 ## Status projektu
 
 **W trakcie realizacji**
