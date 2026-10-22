@@ -21,6 +21,7 @@ Stawiamy na **prostotę i wygodę użytkowania**. Aplikacja pozwoli szybko przel
 Szczegółowy opis projektu oraz wymagania funkcjonalne i niefunkcjonalne:
 
 [Opis projektu i wymagania](docs/wymagania.md)
+
 [User Stories](docs/ORG-02-User-Stories.md)
 
 ## Status projektu
