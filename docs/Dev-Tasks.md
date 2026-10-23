@@ -25,3 +25,20 @@ Moduł 3: Dziennik żywieniowy i Cele (Odpowiedzialność: Członek 4)
 - DEV-09: Automatyczne sumowanie dziennego spożycia kalorii i makroskładników.
 - DEV-10: Ustawianie dziennych celów żywieniowych oraz prezentacja postępów (paski postępu i porównanie z celem).
 
+Moduł 4: Historia i Responsywność (Odpowiedzialność: Cały zespół)
+- DEV-11: Implementacja przeglądania historii spożycia z poprzednich dni.
+- DEV-12: Testy responsywności interfejsu na komputerach i urządzeniach mobilnych w sieci lokalnej.
+
+Moduł 4: Historia i Responsywność (Odpowiedzialność: Cały zespół)
+- DEV-11: Implementacja przeglądania historii spożycia z poprzednich dni.
+- DEV-12: Testy responsywności interfejsu na komputerach i urządzeniach mobilnych w sieci lokalnej.
+
+3. Organizacja Backlogu i zarządzanie zadaniami
+Zadania techniczne są rejestrowane jako GitHub Issues w repozytorium projektu oraz zarządzane w widoku Kanban (GitHub Projects) z użyciem następujących statusów:
+- Todo: Zadania zaplanowane do realizacji w kolejnych etapach.
+- In Progress: Zadania aktualnie wykonywane przez przypisanego członka zespołu.
+- In Review: Zadania po zakończonym kodowaniu, oczekujące na sprawdzenie i połączenie z główną gałęzią.
+- Done: Zadania w pełni ukończone, przetestowane i spełniające kryteria akceptacji.
+
+4. Podsumowanie
+Podział projektu na konkretne zadania techniczne (Dev Tasks) umożliwia równoległą pracę członków zespołu, śledzenie postępów na GitHubie oraz sprawną integrację poszczególnych modułów aplikacji CalorieTracker do 22 stycznia 2027 r.
