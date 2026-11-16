@@ -29,10 +29,6 @@ Moduł 4: Historia i Responsywność (Odpowiedzialność: Cały zespół)
 - DEV-11: Implementacja przeglądania historii spożycia z poprzednich dni.
 - DEV-12: Testy responsywności interfejsu na komputerach i urządzeniach mobilnych w sieci lokalnej.
 
-Moduł 4: Historia i Responsywność (Odpowiedzialność: Cały zespół)
-- DEV-11: Implementacja przeglądania historii spożycia z poprzednich dni.
-- DEV-12: Testy responsywności interfejsu na komputerach i urządzeniach mobilnych w sieci lokalnej.
-
 3. Organizacja Backlogu i zarządzanie zadaniami
 Zadania techniczne są rejestrowane jako GitHub Issues w repozytorium projektu oraz zarządzane w widoku Kanban (GitHub Projects) z użyciem następujących statusów:
 - Todo: Zadania zaplanowane do realizacji w kolejnych etapach.
