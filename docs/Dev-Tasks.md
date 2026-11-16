@@ -1,40 +1,100 @@
-ORG-03 – Zadania programistyczne (Dev Tasks) i Backlog
-Projekt: CalorieTracker
-Typ dokumentu: Podział funkcjonalny na zadania techniczne, organizacja backlogu i priorytetyzacja
-Planowany termin ukończenia projektu: 22 stycznia 2027 r.
+# ORG-03 – Zadania programistyczne (Dev Tasks) i Backlog
 
-1. Wprowadzenie do zadań technicznych (Dev Tasks)
-Zadania techniczne stanowią rozwinięcie wymagań funkcjonalnych oraz historii użytkownika (User Stories) na konkretne kroki programistyczne realizowane w zespole. Każde zadanie techniczne odpowiada elementowi kodu tworzonego w Pythonie przy użyciu frameworka Streamlit i lokalnej bazy danych SQLite.
+**Projekt:** CalorieTracker  
+**Technologie:** Python, Streamlit, SQLite  
+**Zespół:** 4 osoby  
+**Planowany termin ukończenia:** 22 stycznia 2027 r.
 
-2. Podział zadań na moduły programistyczne
-W ramach czteroosobowego zespołu prace zostały podzielone na cztery główne moduły techniczne, powiązane z odpowiednimi osobami:
+## 1. Cel dokumentu
 
-Moduł 1: Baza danych i Użytkownicy (Odpowiedzialność: Członek 1 i Członek 2)
-- DEV-01: Konfiguracja lokalnej bazy danych SQLite i schematu tabel (tabeli użytkowników, produktów, wpisów oraz celów).
-- DEV-02: Implementacja rejestracji użytkownika oraz bezpiecznego haszowania haseł.
-- DEV-03: Implementacja logowania, wylogowania oraz obsługi sesji użytkownika w Streamlit.
+Celem dokumentu jest określenie podziału prac programistycznych w projekcie CalorieTracker.
 
-Moduł 2: Kalkulator wartości odżywczych (Odpowiedzialność: Członek 3)
-- DEV-04: Stworzenie formularza wprowadzania danych z etykiety (wartości na 100 g / 100 ml).
-- DEV-05: Implementacja logiki matematycznej przeliczania wartości odżywczych na podaną ilość produktu (obsługa gramów, kilogramów, mililitrów i litrów).
-- DEV-06: Walidacja danych wejściowych kalkulatora (blokowanie ujemnych wartości, zerowych ilości i błędów).
+Projekt został podzielony na cztery główne moduły (MOD-01–MOD-04), za które odpowiadają poszczególni członkowie zespołu.
 
-Moduł 3: Dziennik żywieniowy i Cele (Odpowiedzialność: Członek 4)
-- DEV-07: Implementacja dodawania przeliczonego produktu do dziennika dla wybranej daty.
-- DEV-08: Stworzenie widoku dziennika z możliwością edycji i usuwania wpisów.
-- DEV-09: Automatyczne sumowanie dziennego spożycia kalorii i makroskładników.
-- DEV-10: Ustawianie dziennych celów żywieniowych oraz prezentacja postępów (paski postępu i porównanie z celem).
+Każdy moduł składa się z mniejszych zadań technicznych (Dev Tasks), które będą realizowane i monitorowane za pomocą GitHub Issues oraz Sub-issues.
 
-Moduł 4: Historia i Responsywność (Odpowiedzialność: Cały zespół)
-- DEV-11: Implementacja przeglądania historii spożycia z poprzednich dni.
-- DEV-12: Testy responsywności interfejsu na komputerach i urządzeniach mobilnych w sieci lokalnej.
+## 2. Podział zadań programistycznych
 
-3. Organizacja Backlogu i zarządzanie zadaniami
-Zadania techniczne są rejestrowane jako GitHub Issues w repozytorium projektu oraz zarządzane w widoku Kanban (GitHub Projects) z użyciem następujących statusów:
-- Todo: Zadania zaplanowane do realizacji w kolejnych etapach.
-- In Progress: Zadania aktualnie wykonywane przez przypisanego członka zespołu.
-- In Review: Zadania po zakończonym kodowaniu, oczekujące na sprawdzenie i połączenie z główną gałęzią.
-- Done: Zadania w pełni ukończone, przetestowane i spełniające kryteria akceptacji.
+### MOD-01 – Fundament aplikacji i logowanie
 
-4. Podsumowanie
-Podział projektu na konkretne zadania techniczne (Dev Tasks) umożliwia równoległą pracę członków zespołu, śledzenie postępów na GitHubie oraz sprawną integrację poszczególnych modułów aplikacji CalorieTracker do 22 stycznia 2027 r.
+**Odpowiedzialność:** Członek 1  
+**Folder:** `modules/auth/` oraz `app.py`
+
+- **DEV-01:** Przygotowanie głównego szkieletu aplikacji Streamlit, podstawowego układu interfejsu i nawigacji.
+- **DEV-02:** Implementacja formularzy rejestracji i logowania użytkowników oraz bezpiecznego haszowania haseł.
+- **DEV-03:** Implementacja logowania, wylogowania i obsługi sesji użytkownika przy wykorzystaniu funkcji bazy danych.
+
+**Rezultat:** Działający fundament aplikacji z możliwością nawigacji i obsługą kont użytkowników.
+
+### MOD-02 – Kalkulator wartości odżywczych
+
+**Odpowiedzialność:** Członek 2  
+**Folder:** `modules/calculator/`
+
+- **DEV-04:** Stworzenie formularza kalkulatora w Streamlit do wprowadzania danych z etykiety na 100 g lub 100 ml.
+- **DEV-05:** Implementacja przeliczania kalorii, białka, tłuszczów i węglowodanów na dowolną ilość produktu.
+- **DEV-06:** Walidacja danych wejściowych i testowanie poprawności obliczeń.
+
+**Rezultat:** Działający kalkulator wartości odżywczych przygotowany do integracji z dziennikiem żywieniowym.
+
+### MOD-03 – Baza danych SQLite
+
+**Odpowiedzialność:** Członek 3  
+**Folder:** `modules/database/`
+
+- **DEV-07:** Utworzenie lokalnej bazy SQLite oraz tabel użytkowników, produktów, wpisów żywieniowych i celów.
+- **DEV-08:** Implementacja funkcji zapisywania, odczytywania, edytowania i usuwania danych.
+- **DEV-09:** Obsługa danych użytkowników i ich powiązania z wpisami żywieniowymi oraz celami.
+
+**Rezultat:** Działająca baza SQLite udostępniająca funkcje potrzebne pozostałym modułom.
+
+### MOD-04 – Dziennik żywieniowy, cele i historia
+
+**Odpowiedzialność:** Członek 4  
+**Folder:** `modules/diary/`
+
+- **DEV-10:** Implementacja dodawania przeliczonych produktów do dziennika dla wybranej daty.
+- **DEV-11:** Stworzenie widoku dziennika z możliwością przeglądania, edytowania i usuwania wpisów.
+- **DEV-12:** Automatyczne sumowanie kalorii i makroskładników oraz obsługa dziennych celów żywieniowych.
+- **DEV-13:** Implementacja historii spożycia z możliwością przeglądania poprzednich dni.
+
+**Rezultat:** Działający dziennik żywieniowy umożliwiający zapisywanie posiłków, kontrolowanie dziennych celów oraz sprawdzanie historii.
+
+## 3. Organizacja Backlogu
+
+Każdy z czterech modułów posiada główne Issue na GitHubie.
+
+Poszczególne Dev Taski będą tworzone jako Sub-issues przypisane do odpowiedniego modułu i osoby odpowiedzialnej.
+
+Do monitorowania pracy wykorzystywane będą statusy:
+
+- **Todo** – zadanie oczekuje na realizację.
+- **In Progress** – zadanie jest wykonywane.
+- **In Review** – zadanie oczekuje na sprawdzenie.
+- **Done** – zadanie zostało ukończone i zaakceptowane.
+
+## 4. Kolejność realizacji
+
+Prace nad modułami mogą odbywać się równolegle.
+
+Na początku zespół uzgadnia podstawową strukturę aplikacji oraz sposób komunikacji między modułami.
+
+MOD-01 przygotowuje fundament aplikacji, MOD-02 tworzy niezależny kalkulator, MOD-03 opracowuje bazę danych, a MOD-04 przygotowuje dziennik żywieniowy.
+
+Do czasu integracji poszczególne moduły mogą korzystać z przykładowych danych testowych.
+
+Po przygotowaniu funkcjonalności moduły zostaną połączone w jedną aplikację.
+
+## 5. Integracja i testowanie
+
+Za końcową integrację i testowanie odpowiada cały zespół w ramach zadania **TEST-01**.
+
+Zakres obejmuje sprawdzenie poprawności działania modułów, testy zapisu i odczytu danych, testy interfejsu na komputerze i urządzeniach mobilnych oraz poprawianie wykrytych błędów.
+
+## 6. Podsumowanie
+
+Projekt CalorieTracker został podzielony na cztery główne moduły i 13 zadań technicznych.
+
+Podział umożliwia równoległą pracę członków zespołu, kontrolowanie postępów za pomocą GitHub Projects i stopniową integrację wszystkich funkcjonalności.
+
+**Planowany termin ukończenia projektu: 22 stycznia 2027 r.**
