@@ -1,0 +1,5 @@
+# MOD-02 – Kalkulator wartoœci od¿ywczych
+
+Modu³ odpowiada za formularz wprowadzania danych z etykiety produktu, przeliczanie kalorii i makrosk³adników na dowoln¹ porcjê oraz walidacjê wprowadzanych wartoœci.
+
+Wyniki obliczeñ bêd¹ mog³y zostaæ wykorzystane przez modu³ dziennika ¿ywieniowego (MOD-04).
