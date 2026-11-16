@@ -1,0 +1,1 @@
+Zrzuty ekranu przedstawiające działanie aplikacji CalorieTracker
