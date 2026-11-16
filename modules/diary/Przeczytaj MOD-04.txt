@@ -1,0 +1,5 @@
+# MOD-04 – Dziennik ¿ywieniowy, cele i historia
+
+Modu³ odpowiada za dodawanie i wyœwietlanie spo¿ytych produktów, sumowanie dziennych kalorii i makrosk³adników, ustalanie celów ¿ywieniowych oraz przegl¹danie historii poprzednich dni.
+
+Modu³ bêdzie korzystaæ z wyników kalkulatora (MOD-02) i funkcji bazy danych SQLite (MOD-03).

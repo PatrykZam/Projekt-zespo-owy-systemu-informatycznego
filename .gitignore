@@ -1,0 +1,17 @@
+
+# Visual Studio
+.vs/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Lokalne bazy danych
+*.db
+*.sqlite
+*.sqlite3
+
+# Sekrety i konfiguracja lokalna
+.env
+.streamlit/secrets.toml

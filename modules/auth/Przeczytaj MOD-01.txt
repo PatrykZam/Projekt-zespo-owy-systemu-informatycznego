@@ -1,0 +1,5 @@
+# MOD-01 – Fundament aplikacji i logowanie
+
+Modu³ odpowiada za podstawowy interfejs aplikacji CalorieTracker, nawigacjê miêdzy ekranami oraz obs³ugê rejestracji, logowania i sesji u¿ytkownika.
+
+Modu³ bêdzie wspó³pracowa³ z baz¹ danych SQLite przygotowan¹ w MOD-03.
