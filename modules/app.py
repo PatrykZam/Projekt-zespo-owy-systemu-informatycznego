@@ -1,5 +1,6 @@
 import streamlit as st
 from modules.auth.auth import show_auth_page
+from modules.calculator.calculator_ui import show_calculator
 
 st.set_page_config(
     page_title="CalorieTracker",
@@ -34,8 +35,7 @@ def main():
             st.rerun()
 
     if menu == "🧮 Kalkulator porcji":
-        st.header("🧮 Kalkulator wartości odżywczych")
-        st.info("Miejsce na moduł MOD-02 (Kalkulator porcji - Osoba 2)")
+        show_calculator()
 
     elif menu == "📔 Dziennik żywieniowy":
         st.header("📔 Twój dziennik żywieniowy")
