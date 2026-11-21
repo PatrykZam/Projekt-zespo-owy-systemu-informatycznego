@@ -12,6 +12,9 @@ def wyczysc_wynik():
 
 
 def show_calculator():
+    if "mod02_widok" not in st.session_state:
+        st.session_state["mod02_widok"] = "formularz"
+
     st.markdown("""
         <style>
         .st-key-mod02_formularz [data-testid="stForm"] {
@@ -40,7 +43,69 @@ def show_calculator():
         "ile kalorii oraz makroskładników zawiera Twoja porcja."
     )
 
-    st.divider()
+    # Na telefonie i komputerze wynik ma własny widok,
+    # zamiast pojawiać się pod długim formularzem.
+    if (
+        st.session_state["mod02_widok"] == "wynik"
+        and "mod02_wynik" in st.session_state
+    ):
+        wynik = st.session_state["mod02_wynik"]
+
+        with st.container(key="mod02_wyniki"):
+            st.subheader(wynik["nazwa"])
+            st.caption(
+                f"Wartości dla porcji: {formatuj(wynik['ilosc'])} "
+                f"{wynik['jednostka']}"
+            )
+
+            st.metric(
+                "🔥 Łączna energia",
+                f"{formatuj(wynik['kcal'])} kcal"
+            )
+
+            kol1, kol2, kol3 = st.columns(3)
+            with kol1:
+                st.metric("🥩 Białko", f"{formatuj(wynik['bialko'])} g")
+            with kol2:
+                st.metric("🥑 Tłuszcze", f"{formatuj(wynik['tluszcze'])} g")
+            with kol3:
+                st.metric(
+                    "🌾 Węglowodany",
+                    f"{formatuj(wynik['weglowodany'])} g"
+                )
+
+            st.divider()
+            edycja, nowy = st.columns(2)
+
+            with edycja:
+                if st.button(
+                    "✏️ Edytuj produkt",
+                    use_container_width=True,
+                    key="mod02_edytuj"
+                ):
+                    st.session_state["mod02_widok"] = "formularz"
+                    st.rerun()
+
+            with nowy:
+                if st.button(
+                    "➕ Nowy produkt",
+                    use_container_width=True,
+                    type="primary",
+                    key="mod02_nowy"
+                ):
+                    wyczysc_wynik()
+                    for klucz in [
+                        "mod02_podstawa", "mod02_jednostka",
+                        "mod02_nazwa", "mod02_kcal", "mod02_bialko",
+                        "mod02_tluszcze", "mod02_weglowodany",
+                        "mod02_ilosc_g", "mod02_ilosc_kg",
+                        "mod02_ilosc_ml", "mod02_ilosc_l"
+                    ]:
+                        st.session_state.pop(klucz, None)
+                    st.session_state["mod02_widok"] = "formularz"
+                    st.rerun()
+
+        return
 
     with st.container(key="mod02_formularz"):
         st.subheader("📦 Dane produktu")
@@ -70,7 +135,8 @@ def show_calculator():
         with st.form("mod02_form"):
             nazwa = st.text_input(
                 "Nazwa produktu",
-                placeholder="Np. Skyr naturalny"
+                placeholder="Np. Skyr naturalny",
+                key="mod02_nazwa"
             )
 
             st.caption(f"Wartości odżywcze na {podstawa}")
@@ -80,12 +146,14 @@ def show_calculator():
             with col1:
                 kcal = st.number_input(
                     "Kalorie (kcal)",
+                    key="mod02_kcal",
                     min_value=0.0,
                     step=1.0,
                     format="%.2f"
                 )
                 bialko = st.number_input(
                     "Białko (g)",
+                    key="mod02_bialko",
                     min_value=0.0,
                     step=0.1,
                     format="%.2f"
@@ -94,12 +162,14 @@ def show_calculator():
             with col2:
                 tluszcze = st.number_input(
                     "Tłuszcze (g)",
+                    key="mod02_tluszcze",
                     min_value=0.0,
                     step=0.1,
                     format="%.2f"
                 )
                 weglowodany = st.number_input(
                     "Węglowodany (g)",
+                    key="mod02_weglowodany",
                     min_value=0.0,
                     step=0.1,
                     format="%.2f"
@@ -146,54 +216,13 @@ def show_calculator():
                     "podstawa": podstawa,
                     **wyniki
                 }
+                st.session_state["mod02_widok"] = "wynik"
+                st.rerun()
 
             except ValueError as blad:
                 st.error(str(blad))
                 wyczysc_wynik()
 
-    wynik = st.session_state.get("mod02_wynik")
-
-    if wynik:
-        with st.container(key="mod02_wyniki"):
-            st.divider()
-            st.subheader("📊 Wyniki obliczeń")
-
-            st.write(f"**Produkt:** {wynik['nazwa']}")
-            st.caption(
-                f"Porcja: {formatuj(wynik['ilosc'])} "
-                f"{wynik['jednostka']}"
-            )
-
-            st.metric(
-                "🔥 Łączna energia",
-                f"{formatuj(wynik['kcal'])} kcal"
-            )
-
-            col1, col2, col3 = st.columns(3)
-
-            with col1:
-                st.metric(
-                    "🥩 Białko",
-                    f"{formatuj(wynik['bialko'])} g"
-                )
-
-            with col2:
-                st.metric(
-                    "🥑 Tłuszcze",
-                    f"{formatuj(wynik['tluszcze'])} g"
-                )
-
-            with col3:
-                st.metric(
-                    "🌾 Węglowodany",
-                    f"{formatuj(wynik['weglowodany'])} g"
-                )
-
-            st.success("Obliczenia wykonane poprawnie.")
-
-            if st.button("Wyczyść wynik", key="mod02_clear"):
-                wyczysc_wynik()
-                st.rerun()
 
 
 if __name__ == "__main__":
