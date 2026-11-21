@@ -15,6 +15,12 @@ def show_calculator():
     if "mod02_widok" not in st.session_state:
         st.session_state["mod02_widok"] = "formularz"
 
+    # Streamlit usuwa stan pól, które nie są wyświetlane.
+    # Po wejściu w edycję przywracamy dane z niezależnej kopii.
+    if st.session_state.pop("mod02_przywroc_edycje", False):
+        for klucz, wartosc in st.session_state.get("mod02_draft", {}).items():
+            st.session_state[klucz] = wartosc
+
     st.markdown("""
         <style>
         .st-key-mod02_formularz [data-testid="stForm"] {
@@ -84,6 +90,7 @@ def show_calculator():
                     key="mod02_edytuj"
                 ):
                     st.session_state["mod02_widok"] = "formularz"
+                    st.session_state["mod02_przywroc_edycje"] = True
                     st.rerun()
 
             with nowy:
@@ -94,6 +101,8 @@ def show_calculator():
                     key="mod02_nowy"
                 ):
                     wyczysc_wynik()
+                    st.session_state.pop("mod02_draft", None)
+                    st.session_state.pop("mod02_przywroc_edycje", None)
                     for klucz in [
                         "mod02_podstawa", "mod02_jednostka",
                         "mod02_nazwa", "mod02_kcal", "mod02_bialko",
@@ -215,6 +224,18 @@ def show_calculator():
                     "jednostka": jednostka,
                     "podstawa": podstawa,
                     **wyniki
+                }
+                # Kopia oryginalnych danych pozwala później edytować produkt.
+                # To osobny stan, niepowiązany z polami formularza.
+                st.session_state["mod02_draft"] = {
+                    "mod02_podstawa": podstawa,
+                    "mod02_jednostka": jednostka,
+                    "mod02_nazwa": nazwa,
+                    "mod02_kcal": kcal,
+                    "mod02_bialko": bialko,
+                    "mod02_tluszcze": tluszcze,
+                    "mod02_weglowodany": weglowodany,
+                    f"mod02_ilosc_{jednostka}": ilosc
                 }
                 st.session_state["mod02_widok"] = "wynik"
                 st.rerun()
