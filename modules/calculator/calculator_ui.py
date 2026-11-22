@@ -188,13 +188,16 @@ def show_calculator():
                 100.0 if jednostka in ["g", "ml"] else 0.1
             )
 
+            ilosc_key = f"mod02_ilosc_{jednostka}"
+            if ilosc_key not in st.session_state:
+                st.session_state[ilosc_key] = domyslna_ilosc
+
             ilosc = st.number_input(
                 f"Spożyta ilość ({jednostka})",
                 min_value=0.01,
-                value=domyslna_ilosc,
                 step=0.1,
                 format="%.2f",
-                key=f"mod02_ilosc_{jednostka}"
+                key=ilosc_key
             )
 
             oblicz = st.form_submit_button(
