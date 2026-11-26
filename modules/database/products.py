@@ -197,6 +197,24 @@ def update_product(
 
     with closing(get_connection(db_path)) as connection:
         with connection:
+            if "reference_unit" in values:
+                allowed_units = ("g", "kg") if values["reference_unit"] == "g" else ("ml", "l")
+                placeholders = ", ".join("?" for _ in allowed_units)
+                incompatible_entries = connection.execute(
+                    f"""
+                    SELECT COUNT(*) AS total
+                    FROM food_entries
+                    WHERE product_id = ? AND user_id = ?
+                      AND unit NOT IN ({placeholders})
+                    """,
+                    (product_id, user_id, *allowed_units),
+                ).fetchone()["total"]
+                if incompatible_entries:
+                    raise ValueError(
+                        "Nie można zmienić jednostki produktu, ponieważ istnieją "
+                        "wpisy dziennika z niezgodną jednostką."
+                    )
+
             cursor = connection.execute(
                 f"""
                 UPDATE products
