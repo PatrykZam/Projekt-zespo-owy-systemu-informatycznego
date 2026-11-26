@@ -132,14 +132,21 @@ def list_products(
 
     with closing(get_connection(db_path)) as connection:
         if search and search.strip():
+            # Use "!" as the LIKE escape character to avoid SQL backslash parsing issues.
+            escaped_search = (
+                search.strip()
+                .replace("!", "!!")
+                .replace("%", "!%")
+                .replace("_", "!_")
+            )
             rows = connection.execute(
                 """
                 SELECT *
                 FROM products
-                WHERE user_id = ? AND name LIKE ? ESCAPE '\'
+                WHERE user_id = ? AND name LIKE ? ESCAPE '!'
                 ORDER BY name COLLATE NOCASE, id
                 """,
-                (user_id, "%" + search.strip().replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_") + "%"),
+                (user_id, f"%{escaped_search}%"),
             ).fetchall()
         else:
             rows = connection.execute(
